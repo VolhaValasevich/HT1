@@ -17,14 +17,13 @@ public class PageObjectConfirmation {
     @FindBy(xpath = "//span[. = 'Yes']/button")
     private WebElement buttonDelete;
 
-    @FindBy (xpath = "//*[contains(text(), 'Are you sure about deleting the user from Jenkins?')]")
+    @FindBy(xpath = "//*[contains(text(), 'Are you sure about deleting the user from Jenkins?')]")
     private WebElement confirmationText;
 
     public PageObjectConfirmation(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(this.driver, 30);
 
-        // Провекрка того факта, что мы на верной странице.
         if ((!driver.getTitle().equals("Jenkins")) ||
                 (!driver.getCurrentUrl().equals("http://localhost:8080/securityRealm/user/someuser/delete"))) {
             throw new IllegalStateException("Wrong site page!");
@@ -32,15 +31,24 @@ public class PageObjectConfirmation {
     }
 
     public boolean isTextPresent() {
-        if (confirmationText != null) {
-            return true;
-        } else {
+        try {
+            body.findElement(By.xpath("//*[contains(text(), 'Are you sure about deleting the user from Jenkins?')]"));
+        } catch (NoSuchElementException e) {
             return false;
         }
+        return true;
     }
 
     public PageObjectConfirmation clickDeleteButton () {
         buttonDelete.click();
         return this;
+    }
+
+    public boolean checkButtonColor(String color) {
+        if (buttonDelete.getCssValue("background-color").equals(color)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

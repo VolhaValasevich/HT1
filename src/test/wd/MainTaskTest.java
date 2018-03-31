@@ -1,7 +1,6 @@
 package wd;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.PageFactory;
@@ -37,18 +36,23 @@ public class MainTaskTest {
 		}
 	}
 
-
 	@Test
-	public void sampleTest() {
+	public void mainTest() {
 		driver.get(base_url);
 
-		PageObjectAuthorization pageAuthorization = PageFactory.initElements(driver, PageObjectAuthorization.class);
-		pageAuthorization.Authorize();
+		//Authorization (if needed)
+		if (driver.getCurrentUrl().equals("http://localhost:8080/login?from=%2F")) {
+			PageObjectAuthorization pageAuthorization = PageFactory.initElements(driver, PageObjectAuthorization.class);
+			pageAuthorization.Authorize();
+		}
 
+		//1.1) Checking if "Manage Jenkins" link is present and clicking on it
 		PageObjectIndex pageIndex = PageFactory.initElements(driver, PageObjectIndex.class);
-		Assert.assertTrue(pageIndex.isLinkPresent(), "[No \"Manage Jenkins\" link found!]");
+		Assert.assertTrue(pageIndex.isManageLinkPresent(), "[No \"Manage Jenkins\" link found!]");
 		pageIndex.clickManageJenkinsLink();
 
+		//1.2) Checking if dt element "Manage Users" and dd element with text are present; clicking
+		//   on "Manage Users" link
 		PageObjectManage pageManage = PageFactory.initElements(driver, PageObjectManage.class);
 		Assert.assertTrue(pageManage.isDtPresent(), "[No dt element with \"Manage Users\" text found!]");
 		try {
@@ -60,18 +64,19 @@ public class MainTaskTest {
 		Assert.assertTrue(pageManage.isLinkPresent(), "[No \"Manage Users\" link found!]");
 		pageManage.clickManageUsersLink();
 
+		//2) Checking if "Create User" link is present and clicking on it
 		PageObjectSecurityRealm pageSecurityRealm = PageFactory.initElements(driver, PageObjectSecurityRealm.class);
 		Assert.assertTrue(pageSecurityRealm.isCreateUsersLinkPresent(), "[No \"Create User\" link found!]");
 		pageSecurityRealm.clickCreateUserLink();
 
+		//3) Checking if user creation form contains all the necessary empty fields, filling them and clicking on
+		//   "Create User" button
 		PageObjectCreateUser pageCreateUser = PageFactory.initElements(driver, PageObjectCreateUser.class);
-		try {
-			Assert.assertTrue(pageCreateUser.checkEmptyFields());
-		} catch (AssertionError e) {
-			verificationErrors.append("[Not all fields on Create User page are empty!]\n");
-		}
+		Assert.assertEquals(pageCreateUser.checkFields(), "true", pageCreateUser.checkFields());
 		pageCreateUser.setFields().clickCreateUserButton();
 
+		//4) Checking if tr element with td cell and "someuser" text is present
+		//5.1) Checking if "Delete someuser" link is present and clicking on it
 		pageSecurityRealm = PageFactory.initElements(driver, PageObjectSecurityRealm.class);
 		try {
 			Assert.assertTrue(pageSecurityRealm.isRowPresent());
@@ -81,6 +86,8 @@ public class MainTaskTest {
 		Assert.assertTrue(pageSecurityRealm.isDeleteLinkPresent(), "[No \"Delete someuser\" link found!]");
 		pageSecurityRealm.clickDeleteUserLink();
 
+		//5.2) Checking if confirmation text is present
+		//6.1) Clicking on "Yes button"
 		PageObjectConfirmation pageConfirmation = PageFactory.initElements(driver, PageObjectConfirmation.class);
 		try {
 			Assert.assertTrue(pageConfirmation.isTextPresent());
@@ -89,9 +96,20 @@ public class MainTaskTest {
 		}
 		pageConfirmation.clickDeleteButton();
 
+		//6.2) Checking if tr and td element with "someuser" text and "delete someuser" link are NOT present anymore
 		pageSecurityRealm = PageFactory.initElements(driver, PageObjectSecurityRealm.class);
-		Assert.assertFalse(pageSecurityRealm.isRowPresent());
-		Assert.assertFalse(pageSecurityRealm.isDeleteLinkPresent());
-		Assert.assertFalse(pageSecurityRealm.isDeleteAdminLinkPresent());
+		try {
+			Assert.assertFalse(pageSecurityRealm.isRowPresent());
+		} catch (AssertionError e) {
+			verificationErrors.append("[The table row with \"someuser\" cell is present after deleting someuser!]\n");
+		}
+		try {
+			Assert.assertFalse(pageSecurityRealm.isDeleteLinkPresent());
+		} catch (AssertionError e) {
+			verificationErrors.append("[The \"user/someuser/delete\" link is present after deleting someuser!]\n");
+		}
+
+		//7) Checking if "user/admin/delete" is not present
+		Assert.assertFalse(pageSecurityRealm.isDeleteAdminLinkPresent(), "[The \"user/admin/delete\" link is present!]\n");
 	}
 }

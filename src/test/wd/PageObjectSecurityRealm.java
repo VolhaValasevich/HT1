@@ -18,7 +18,13 @@ public class PageObjectSecurityRealm {
     @FindBy (linkText = "Create User")
     private WebElement createUserLink;
 
+    @FindBy (xpath = "//table[@id='people']/tbody/.//td[.//text()[contains(., 'someuser')]]")
+    private WebElement tableCell;
+
+    @FindBy (xpath = "//a[@href = 'user/someuser/delete']")
     private WebElement deleteSomeuserLink;
+
+    @FindBy (xpath = "//a[@href = 'user/admin/delete']")
     private WebElement deleteAdminLink;
 
     public PageObjectSecurityRealm(WebDriver driver) {
@@ -33,11 +39,12 @@ public class PageObjectSecurityRealm {
     }
 
     public boolean isCreateUsersLinkPresent() {
-        if (createUserLink != null) {
-            return true;
-        } else {
+        try {
+            body.findElement(By.linkText("Create User"));
+        } catch (NoSuchElementException e) {
             return false;
         }
+        return true;
     }
 
     public PageObjectSecurityRealm clickCreateUserLink () {

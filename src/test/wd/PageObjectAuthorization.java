@@ -8,10 +8,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class PageObjectAuthorization {
     private WebDriverWait wait;
     private final WebDriver driver;
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!ЗАМЕНИТЬ!
-    private String login = "volhavalasevich";
-    private String password = "9771Erynlasgalen";
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    private String login = "login";
+    private String password = "password";
 
     @FindBy (id = "j_username")
     private WebElement inputUsername;
@@ -26,7 +24,6 @@ public class PageObjectAuthorization {
         this.driver = driver;
         this.wait = new WebDriverWait(this.driver, 30);
 
-       // Провекрка того факта, что мы на верной странице.
         if ((!driver.getTitle().equals("Jenkins")) ||
             (!driver.getCurrentUrl().equals("http://localhost:8080/login?from=%2F"))) {
             throw new IllegalStateException("Wrong site page!");
