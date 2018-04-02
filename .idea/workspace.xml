@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a8d919f1-5da1-47c1-b6cb-4317d42ec50c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/wd/AdditionalTasksTest.java" afterPath="$PROJECT_DIR$/src/test/com/epam/ta/AdditionalTasksTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/wd/MainTaskTest.java" afterPath="$PROJECT_DIR$/src/test/com/epam/ta/MainTaskTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/wd/PageObjectAuthorization.java" afterPath="$PROJECT_DIR$/src/test/com/epam/ta/pages/PageObjectAuthorization.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/wd/PageObjectConfirmation.java" afterPath="$PROJECT_DIR$/src/test/com/epam/ta/pages/PageObjectConfirmation.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/wd/PageObjectCreateUser.java" afterPath="$PROJECT_DIR$/src/test/com/epam/ta/pages/PageObjectCreateUser.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/wd/PageObjectIndex.java" afterPath="$PROJECT_DIR$/src/test/com/epam/ta/pages/PageObjectIndex.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/wd/PageObjectManage.java" afterPath="$PROJECT_DIR$/src/test/com/epam/ta/pages/PageObjectManage.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/wd/PageObjectSecurityRealm.java" afterPath="$PROJECT_DIR$/src/test/com/epam/ta/pages/PageObjectSecurityRealm.java" />
-    </list>
+    <list default="true" id="a8d919f1-5da1-47c1-b6cb-4317d42ec50c" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -62,8 +52,8 @@
       <file leaf-file-name="PageObjectAuthorization.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/com/epam/ta/pages/PageObjectAuthorization.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+            <state relative-caret-position="399">
+              <caret line="19" column="36" lean-forward="true" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1013,8 +1003,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/com/epam/ta/pages/PageObjectAuthorization.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        <state relative-caret-position="399">
+          <caret line="19" column="36" lean-forward="true" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
