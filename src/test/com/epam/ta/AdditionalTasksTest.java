@@ -1,6 +1,9 @@
-package wd;
+package com.epam.ta;
 
-import org.openqa.selenium.By;
+import com.epam.ta.pages.PageObjectAuthorization;
+import com.epam.ta.pages.PageObjectConfirmation;
+import com.epam.ta.pages.PageObjectCreateUser;
+import com.epam.ta.pages.PageObjectIndex;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -9,7 +12,6 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.util.Arrays;
-import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
 public class AdditionalTasksTest {

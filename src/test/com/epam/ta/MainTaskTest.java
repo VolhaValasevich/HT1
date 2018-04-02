@@ -1,5 +1,6 @@
-package wd;
+package com.epam.ta;
 
+import com.epam.ta.pages.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -24,7 +25,7 @@ public class MainTaskTest {
 		DesiredCapabilities capabilities = DesiredCapabilities.chrome();
 		capabilities.setCapability("chrome.switches", Arrays.asList("--homepage=about:blank"));
 		driver = new ChromeDriver(capabilities);
-		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	}
 
 	@AfterClass

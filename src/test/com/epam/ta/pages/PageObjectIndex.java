@@ -1,4 +1,4 @@
-package wd;
+package com.epam.ta.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
